@@ -14,6 +14,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn --batch-mode --Lab5 verify
+        run: mvn --batch-mode --update-snapshots verify
       - name: Run the Maven verify phase
-        run: mvn --batch-mode --FlowerTest verify
+        run: mvn --batch-mode --update-snapshots verify
