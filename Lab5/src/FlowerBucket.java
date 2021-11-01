@@ -1,13 +1,15 @@
-public class FlowerBucket {
-    protected FlowerPack[] flowerPacks;
+import java.util.ArrayList;
 
-    FlowerBucket(FlowerPack[] fps){
-        this.flowerPacks = fps.clone();
+public class FlowerBucket {
+    protected ArrayList<FlowerPack> flowerPacks;
+
+    FlowerBucket(ArrayList<FlowerPack> fps){
+        flowerPacks = (ArrayList<FlowerPack>) fps.clone();
     }
 
     public double price(){
         double pr = 0;
-        for (FlowerPack flowerPack : this.flowerPacks) {
+        for (FlowerPack flowerPack : flowerPacks) {
             pr += flowerPack.price();
         }
         return pr;

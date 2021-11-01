@@ -35,8 +35,11 @@ public class FlowerTest {
     FlowerPack fl3 = new FlowerPack(17, new Tulip(new int[]{52, 11, 145}, 15.0, 50.0));
     @Test
     public void bucketTest(){
-        FlowerPack[] fl = new FlowerPack[]{fl1, fl2, fl3};
-        FlowerBucket fb = new FlowerBucket(new FlowerPack[]{fl1, fl2, fl3});
+        ArrayList<FlowerPack> fl = new ArrayList<FlowerPack>();
+        fl.add(fl1);
+        fl.add(fl2);
+        fl.add(fl3);
+        FlowerBucket fb = new FlowerBucket(fl);
         assertEquals(fb.price(), 1716.0, 0.1);
     }
 
@@ -53,5 +56,40 @@ public class FlowerTest {
 
     }
 
+    @Test
+    public void decoratorTest(){
+        FlowerPackChamomile fch = new FlowerPackChamomile();
+        FlowerPackRoses fro = new FlowerPackRoses();
+        FlowerPackTulips ftu = new FlowerPackTulips();
+        assertEquals(fch.getFlower(), new Chamomile(new int[]{150, 150, 150}, 30.0, 35.0));
+        assertEquals(fch.getAmount(), 5);
+        assertEquals(fch.price(), 175.0, 0.001);
+
+        assertEquals(fro.getFlower(), new Rose(new int[]{75, 75, 75}, 15.5, 30.0));
+        assertEquals(fro.getAmount(), 21);
+        assertEquals(fro.price(), 630.0, 0.001);
+
+        assertEquals(ftu.getFlower(), new Tulip(new int[]{45, 45, 45}, 20.0, 25.0));
+        assertEquals(ftu.getAmount(), 7);
+        assertEquals(ftu.price(), 175.0, 0.001);
+    }
+
+    @Test
+    public void delivereytet(){
+        Store st = new Store();
+        st.addItem(fl1);
+        st.addItem(fl2);
+        st.addItem(fl3);
+        st.send();
+    }
+
+    @Test
+    public void paytest(){
+        Store st = new Store();
+//        st.addItem(fl1);
+//        st.addItem(fl2);
+//        st.addItem(fl3);
+        st.pay();
+    }
 
 }
